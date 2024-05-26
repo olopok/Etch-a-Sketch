@@ -3,9 +3,20 @@
 }
 
 .container {
-    width: 700px;
-    height: 500px;
+    width: 324px;
+    height: 324px;
     display: flex;
+    flex-wrap: wrap;
     border: 2px solid green;
     margin: 0 auto;
 }
+
+.default{
+    margin: 0;
+    padding: 0;
+    width: 16px;
+    height: 16px;
+    border-inline: 1px solid black;
+    border-block: 1px solid black;
+}
+
