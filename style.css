@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    width: 700px;
+    height: 500px;
+    display: flex;
+    border: 2px solid green;
+    margin: 0 auto;
+}
