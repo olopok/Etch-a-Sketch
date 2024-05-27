@@ -1,7 +1,7 @@
 const CONTAINER = document.querySelector('.container');
 const CONTAINER_WIDTH = CONTAINER.offsetWidth;
 const CONTAINER_HEIGHT = CONTAINER.offsetHeight;
-console.log(CONTAINER_WIDTH, CONTAINER_HEIGHT);
+// console.log(CONTAINER_WIDTH, CONTAINER_HEIGHT);
 
 const BUTTON = document.querySelector('button');
 BUTTON.addEventListener('click', newGrid);
@@ -10,7 +10,7 @@ BUTTON.addEventListener('click', newGrid);
 let defaultSquareNumber = 16;
 let defaultSquareWidth = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
 let defaultSquareHeight = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
-console.log(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
+// console.log(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
 
 function grid(squareN, squareW, squareH) {
     for (i = 0; i <= squareN * squareN; i++) {
@@ -23,23 +23,25 @@ function grid(squareN, squareW, squareH) {
     let div = document.querySelectorAll('.square');
     for (const d of div) {
         d.addEventListener('mouseover', randomBackgroundColor);
-    } 
+        d.addEventListener('mouseout', increaseOpacity);
+
+    }
+
 }
 
 grid(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
 
-function newGrid () {
+function newGrid() {
     defaultSquareNumber = prompt("How many squares per side? \n(max 100)");
     defaultSquareWidth = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
     defaultSquareHeight = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
     while (CONTAINER.hasChildNodes()) {
         CONTAINER.removeChild(CONTAINER.firstChild);
-      }
+    }
 
-      grid(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
-      
+    grid(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
+
 }
-
 
 function randomBackgroundColor(e) {
     let x = Math.floor(Math.random() * 256);
@@ -47,5 +49,15 @@ function randomBackgroundColor(e) {
     let z = Math.floor(Math.random() * 256);
     let bgColor = "rgb(" + x + "," + y + "," + z + ")";
     e.target.style.backgroundColor = bgColor;
+}
+
+function increaseOpacity(e) {
+    e.target.classList.add('opacity');
+    let elemOpacity = window.getComputedStyle(e.target).getPropertyValue("opacity");
+    elemOpacity = parseFloat(elemOpacity);
+    elemOpacity += 0.1;
+    e.target.style.opacity = elemOpacity;
+    let color = window.getComputedStyle(e.target).getPropertyValue("background-color");
+    e.target.style.backgroundColor = "black";
 }
 

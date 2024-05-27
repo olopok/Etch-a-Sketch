@@ -9,13 +9,18 @@
     flex-wrap: wrap;
     border: 2px solid green;
     margin: 0 auto;
+    overflow: hidden;;
+
 }
 
 
 .square {
     margin: 0;
     padding: 0;
-    /* border-inline: 1px solid black;
-    border-block: 1px solid black; */
+    flex: auto;
+}
+
+.opacity {
+    opacity: 0.1;
 }
 
