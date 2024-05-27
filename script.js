@@ -3,6 +3,10 @@ const CONTAINER_WIDTH = CONTAINER.offsetWidth;
 const CONTAINER_HEIGHT = CONTAINER.offsetHeight;
 console.log(CONTAINER_WIDTH, CONTAINER_HEIGHT);
 
+const BUTTON = document.querySelector('button');
+BUTTON.addEventListener('click', newGrid);
+
+
 let defaultSquareNumber = 16;
 let defaultSquareWidth = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
 let defaultSquareHeight = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
@@ -16,9 +20,25 @@ function grid(squareN, squareW, squareH) {
         DIV.style.height = `${squareH + 'px'}`;
         CONTAINER.appendChild(DIV);
     }
+    let div = document.querySelectorAll('.square');
+    for (const d of div) {
+        d.addEventListener('mouseover', randomBackgroundColor);
+    } 
 }
 
 grid(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
+
+function newGrid () {
+    defaultSquareNumber = prompt("How many squares per side? \n(max 100)");
+    defaultSquareWidth = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
+    defaultSquareHeight = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
+    while (CONTAINER.hasChildNodes()) {
+        CONTAINER.removeChild(CONTAINER.firstChild);
+      }
+
+      grid(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
+      
+}
 
 
 function randomBackgroundColor(e) {
@@ -29,9 +49,3 @@ function randomBackgroundColor(e) {
     e.target.style.backgroundColor = bgColor;
 }
 
-
-
-let div = document.querySelectorAll('.square');
-for (const d of div) {
-    d.addEventListener('mouseover', randomBackgroundColor);
-}
