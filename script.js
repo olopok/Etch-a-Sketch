@@ -5,7 +5,7 @@ console.log(CONTAINER_WIDTH, CONTAINER_HEIGHT);
 
 let defaultSquareNumber = 16;
 let defaultSquareWidth = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
-let defaultSquareHeight = (CONTAINER_WIDTH -4) / defaultSquareNumber;
+let defaultSquareHeight = (CONTAINER_WIDTH - 4) / defaultSquareNumber;
 console.log(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
 
 function grid(squareN, squareW, squareH) {
@@ -20,11 +20,18 @@ function grid(squareN, squareW, squareH) {
 
 grid(defaultSquareNumber, defaultSquareWidth, defaultSquareHeight);
 
-function hovering(e){
-    e.target.style.backgroundColor = 'black';
+
+function randomBackgroundColor(e) {
+    let x = Math.floor(Math.random() * 256);
+    let y = Math.floor(Math.random() * 256);
+    let z = Math.floor(Math.random() * 256);
+    let bgColor = "rgb(" + x + "," + y + "," + z + ")";
+    e.target.style.backgroundColor = bgColor;
 }
+
+
 
 let div = document.querySelectorAll('.square');
 for (const d of div) {
-    d.addEventListener('mouseover', hovering);
+    d.addEventListener('mouseover', randomBackgroundColor);
 }
